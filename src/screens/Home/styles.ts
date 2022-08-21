@@ -2,10 +2,14 @@ import { MotiView } from 'moti';
 import { RectButton } from 'react-native-gesture-handler';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
 
 export const Container = styled(MotiView)`
   flex: 1;
   background-color: ${props => props.theme.colors.black};
+`;
+
+export const FeatherIcon = styled(Feather)`
 `;
 
 export const Header = styled.View`

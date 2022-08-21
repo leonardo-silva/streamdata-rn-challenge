@@ -1,7 +1,7 @@
 import { useTheme } from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, Modal, ActivityIndicator, View } from 'react-native';
-import { Feather } from '@expo/vector-icons'
+// import { Feather } from '@expo/vector-icons'
 
 import { TopGamesCard } from '../../components/TopGamesCard';
 import { useAuth } from '../../hooks/useAuth';
@@ -9,6 +9,7 @@ import { api } from '../../services/api';
 
 import {
   Container, 
+  FeatherIcon,
   Header, 
   UserInfo, 
   Avatar, 
@@ -53,6 +54,13 @@ export function Home() {
   // creates a function to handle sign out
     // try to call and wait signOut
     // if fails, display an Alert with the title "Erro SignOut" and message "Ocorreu um erro ao tentar se deslogar do app"
+  async function handleSignOut() {
+    try {
+      await signOut();
+    } catch(error) {
+      Alert.alert("ErroSignOut","Ocorreu um erro ao tentarse deslogar no app");
+    }
+  }
 
   async function getTopGames() {
     try {
@@ -98,9 +106,9 @@ export function Home() {
     getUserFollowedStreams();
   }, [])
 
-  // const signOutButtonProps = {
-  //   onPress: your-signOut-function
-  // }
+  const signOutButtonProps = {
+    onPress: handleSignOut
+  }
 
   return (
     <Container
@@ -125,11 +133,18 @@ export function Home() {
           <UserInfoText style={{ fontFamily: theme.fonts.bold }}>{user.display_name}</UserInfoText>
         </UserInfo>
 
-        {/* <SignOutButton onPress={}>
-          Verify if isLoggingOut is true
+        <SignOutButton onPress={signOutButtonProps.onPress}>
+              { isLoggingOut
+                ? <ActivityIndicator 
+                   color={theme.colors.white} 
+                   size={25}
+                 />
+                : <FeatherIcon name="power"/>
+              }
+          {/* Verify if isLoggingOut is true
           If it is, show an ActivityIndicator
-          Otherwise, show Feather's power icon
-        </SignOutButton> */}
+          Otherwise, show Feather's power icon */}
+        </SignOutButton>
       </Header>
 
       <UserFollowedStreams>

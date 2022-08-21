@@ -18,7 +18,8 @@ import {
   Description, 
   SignInButton,
   SignInButtonIcon,
-  SignInButtonText 
+  SignInButtonText,
+  TwitchIcon
 } from './styles';
 
 export function SignIn() {
@@ -32,6 +33,14 @@ export function SignIn() {
     // const signInButtonProps = {
     //   onPress: your-signIn-function
     // }
+
+  async function handleSignIn() {
+    try {
+      await signIn();
+    } catch(error) {
+      Alert.alert("ErroSignIn","Ocorreu um erro ao tentar logar no app");
+    }
+  }  
 
   return (
     <Container
@@ -65,19 +74,32 @@ export function SignIn() {
             o mundo da Twitch
           </Description>
 
-          {/* <SignInButton {...signInButtonProps}>
+           <SignInButton 
+            onPress={handleSignIn}
+           >
             <SignInButtonIcon>
-              Verify if isLoggingIn is true
+              { isLoggingIn 
+                ? <ActivityIndicator 
+                   color={theme.colors.white} 
+                   size={20}
+                 />
+                : <TwitchIcon name="twitch"/>
+              }
+              {/* Verify if isLoggingIn is true
               If it is, show an ActivityIndicator
-              Otherwise, show Fontisto's twitch icon
+              Otherwise, show Fontisto's twitch icon */}
             </SignInButtonIcon>
 
             <SignInButtonText>
-              Verify if isLoggingIn is true
+              { isLoggingIn
+                ? "Entrando..."
+                : "Entrar com Twitch"
+              }
+              {/* Verify if isLoggingIn is true
               If it is, show "Entrando..."
-              Otherwise, show "Entrar com Twitch"
+              Otherwise, show "Entrar com Twitch" */}
             </SignInButtonText>
-          </SignInButton> */}
+          </SignInButton> 
         </LoginInfo>
       </Content>
 

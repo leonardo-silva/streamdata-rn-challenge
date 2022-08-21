@@ -5,6 +5,7 @@
     "name": "stream.data",
     "scheme": "stream.data",
     "slug": "streamData",
+    "owner": "leonardo.silva",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
