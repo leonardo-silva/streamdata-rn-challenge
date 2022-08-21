@@ -1,15 +1,14 @@
 import { useTheme } from 'styled-components';
 import React, { useEffect, useState } from 'react';
 import { Alert, FlatList, Modal, ActivityIndicator, View } from 'react-native';
-// import { Feather } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 
 import { TopGamesCard } from '../../components/TopGamesCard';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 
 import {
-  Container, 
-  FeatherIcon,
+  Container,
   Header, 
   UserInfo, 
   Avatar, 
@@ -139,7 +138,10 @@ export function Home() {
                    color={theme.colors.white} 
                    size={25}
                  />
-                : <FeatherIcon name="power"/>
+                : <Feather 
+                    name="power"
+                    size={24}
+                  />
               }
           {/* Verify if isLoggingOut is true
           If it is, show an ActivityIndicator

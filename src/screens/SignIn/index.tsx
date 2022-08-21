@@ -18,8 +18,7 @@ import {
   Description, 
   SignInButton,
   SignInButtonIcon,
-  SignInButtonText,
-  TwitchIcon
+  SignInButtonText
 } from './styles';
 
 export function SignIn() {
@@ -83,7 +82,11 @@ export function SignIn() {
                    color={theme.colors.white} 
                    size={20}
                  />
-                : <TwitchIcon name="twitch"/>
+                : <Fontisto 
+                    name="twitch"
+                    size={20}
+                    style={{ marginRight: 1 }}
+                  />
               }
               {/* Verify if isLoggingIn is true
               If it is, show an ActivityIndicator
